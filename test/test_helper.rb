@@ -23,7 +23,6 @@ class ActiveSupport::TestCase
   extend Shoulda::Matchers::ActiveRecord
   include Shoulda::Matchers::ActiveModel
   extend Shoulda::Matchers::ActiveModel
-  fixtures :all
 
   # Add more helper methods to be used by all tests here...
 end

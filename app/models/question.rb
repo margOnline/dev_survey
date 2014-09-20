@@ -4,5 +4,6 @@ class Question < ActiveRecord::Base
   has_many :answers
 
   validates :title, :presence => true
-  validates :field_type, :presence => true, :inclusion => { :in => QUESTION_TYPES }
+  validates :field_type,
+    :presence => true, :inclusion => { :in => QUESTION_TYPES }
 end

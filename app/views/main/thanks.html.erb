@@ -1,0 +1,19 @@
+<% content_for :body_class, 'thanks' %>
+<% content_for :body_id,    'thanks' %>
+<% content_for :page_title, 'Thanks' %>
+
+<div class="c12">
+  <h1><%= yield :page_title %></h1>
+</div> <!-- .c -->
+
+<ul class="c6 med-c12 no-pad">
+
+  <li class="row">
+    <div class="c6">
+      <%= flash_messages %>
+    </div> <!-- .c -->
+    <div class="c6">
+
+    </div> <!-- .c -->
+  </li>
+</ul>

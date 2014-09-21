@@ -2,6 +2,7 @@ class SurveysController < ApplicationController
   before_action :authenticate_user!
 
   def new
+    return if current_user.survey
     @survey = current_user.build_survey
     setup_questions
     @questions.each { @survey.answers.build }

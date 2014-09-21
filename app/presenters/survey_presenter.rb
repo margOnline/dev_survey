@@ -41,7 +41,7 @@ class SurveyPresenter < Exhibit::Presenter
 
   def display_submit
     content_tag(:div, :class => "submit") do
-      button_tag 'Submit', :class => 'btn'
+      button_tag 'Submit', :class => 'btn btn-lg'
     end
   end
 

@@ -13,6 +13,7 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 gem 'rails-html-sanitizer'
+gem 'bootstrap-sass', '3.2.0.0'
 
 group :doc do
   gem 'sdoc', require: false

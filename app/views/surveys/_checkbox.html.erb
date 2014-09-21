@@ -1,0 +1,17 @@
+<li><h5><%= question.title %><%= show_required(question) %></h5></li>
+<%= show_explanation_for(question) if question.explanation.present? %>
+<%= hidden_field_tag "survey[answers_attributes][#{index}][question_id]", question.id %>
+<% if !answer.new_record? %>
+  <%= hidden_field_tag "survey[answers_attributes][#{index}][id]",
+      answer.id %>
+<% end %>
+<% question.possible_answers.each do |option| %>
+  <li class="checkbox">
+    <% selected_answers = answer.question_answer_choices.any? ?
+      answer.question_answer_choices.collect{|a| a.possible_answer_id} : [] %>
+    <%= check_box_tag "survey[answers_attributes][#{index}][question_answer_choices_attributes][][possible_answer_id]",
+    option.id, selected_answers.include?(option.id) %>
+    <%= label_tag option.text %>
+  </li>
+<% end %>
+<li><%= error_messages_for(answer) %></li>

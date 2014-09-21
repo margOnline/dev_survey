@@ -1,1 +1,12 @@
-new.html.erb
+<% content_for :body_class, 'survey' %>
+<% content_for :body_id,    'survey-new' %>
+<% content_for :page_title, 'New survey' %>
+
+<div class="c6 med-c12">
+  <%= flash_messages %>
+
+  <%= error_messages_for @survey %>
+  <h3>Complete the Survey</h3>
+
+  <%= render :partial => 'form' %>
+</div>

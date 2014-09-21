@@ -4,16 +4,17 @@ source 'https://rubygems.org'
 gem 'rails', '4.0.9'
 
 gem 'pg'
+gem 'bootstrap-sass', '3.2.0.0'
+gem 'coffee-rails', '~> 4.0.0'
 gem 'devise'
 gem 'exhibit'
-gem 'sass-rails', '~> 4.0.2'
-gem 'uglifier', '>= 1.3.0'
-gem 'coffee-rails', '~> 4.0.0'
-gem 'jquery-rails'
-gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
+gem 'jquery-rails'
 gem 'rails-html-sanitizer'
-gem 'bootstrap-sass', '3.2.0.0'
+gem 'sass-rails', '~> 4.0.2'
+gem 'sidekiq'
+gem 'turbolinks'
+gem 'uglifier', '>= 1.3.0'
 
 group :doc do
   gem 'sdoc', require: false
@@ -27,6 +28,7 @@ end
 
 group :test do
   gem 'factory_girl_rails'
+  gem 'flexmock', :require => 'flexmock/test_unit'
   gem 'minitest'
   gem 'minitest-reporters'
   gem 'mini_backtrace'

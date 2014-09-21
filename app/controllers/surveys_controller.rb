@@ -32,5 +32,4 @@ class SurveysController < ApplicationController
   def setup_questions
     @questions = Question.all
   end
-
 end

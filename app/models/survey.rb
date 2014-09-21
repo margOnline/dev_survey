@@ -1,4 +1,6 @@
 class Survey < ActiveRecord::Base
+  after_save :send_survey_completed, :only => :create
+
   belongs_to :user
   has_many :answers,:dependent => :destroy
   has_many :questions, :through => :answers
@@ -24,6 +26,10 @@ class Survey < ActiveRecord::Base
     answers.select do |answer|
       answer.question.present? && answer.question.required?
     end
+  end
+
+  def send_survey_completed
+    AdminMailer.notify_admin(self.id).deliver
   end
 
 end

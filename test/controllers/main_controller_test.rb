@@ -6,4 +6,9 @@ class MainControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  should 'get thanks' do
+    get :index
+    assert_response :success
+  end
+
 end

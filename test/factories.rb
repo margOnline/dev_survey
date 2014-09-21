@@ -19,7 +19,6 @@ FactoryGirl.define do
     end
   end
 
-
   #############################
   ###    EVERYTHING ELSE    ###
   ### ALPHABETIZE THIS LIST ###

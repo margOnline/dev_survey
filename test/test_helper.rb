@@ -26,3 +26,11 @@ class ActiveSupport::TestCase
 
   # Add more helper methods to be used by all tests here...
 end
+
+# Include helpers for logging in with devise
+class ActionController::TestCase
+  include Devise::TestHelpers
+end
+
+# Include helpers and assertions for capybara
+

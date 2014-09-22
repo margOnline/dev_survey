@@ -11,23 +11,32 @@ user = User.create(
   :password_confirmation => 'password'
 )
 
+company = QuestionGroup.new(:name => 'company')
+dev = QuestionGroup.new(:name => 'developer')
+background = QuestionGroup.new(:name => 'background')
+
 questions = [
-  { :title => "What are your current goals", :field_type => "TextField",
-      :explanation => 'Looking to lose fat, gain muscle, improve strength?',
-      :required => true },
-  { :title => "What experience do you have", :field_type => "TextField",
-      :explanation => "Brief summary of your fitness / workout experience,
-      where you're currently at in terms of strength (include current weights
-      if applicable).",:required => true },
-  { :title => "How many times a week can you train", :field_type => "RadioSelect",
-      :explanation => '',:required => true, :options => %w(2 3 4 5+) },
-  { :title => "What training facilities do you have access to",
-      :field_type => "TextField", :explanation => 'Do you have a gym? If so,
-      what sort of equipment is available? If not, do you have anything at home
-      or elsewhere?',:required => true },
-  { :title => "Do you have any health issues we should be aware of",
-      :field_type => "TextField",:explanation => '',:required => true }
-]
+  { :title => "How long have you been with the company?", :field_type => "RadioSelect",
+    :options => %Q(less\sthan\sa\syear 1-5\syears),
+    :required => true, :question_group_id => developer_qs.id },
+  { :title => "Do you have a computer science degree?", :field_type => "RadioSelect",
+    :options => %w(yes no),:required => true,
+    :question_group_id => developer_qs.id},
+  { :title => "Does the company have a learning culture?", :field_type => "RadioSelect",
+    :options => %w(yes no), :explanation => 'e.g. a conference policy, a policy for attending courses or buying books'
+    :required => true, :question_group_id => developer_qs.id },
+  { :title => "Do you have a mentor", :field_type => "RadioSelect",
+    :options => %w(yes no),:required => true,
+    :question_group_id => developer_qs.id},
+  { :title => "What was your previous experience in Tech?", :field_type => "Checkbox",
+    :options => %Q(Developer Quality\sAssurance\\Tester Designer None Other),:required => true,
+    :question_group_id => background.id},
+  { :title => "Does your company have a programme in place to support Junior Developers?", :field_type => "RadioSelect",
+    :options => %w(yes no),:required => true,
+    :question_group_id => developer_qs.id},
+] { :title => "Do you have a mentor", :field_type => "RadioSelect",
+    :options => %Q(Daily Weekly Monthly Yearly Ad\sHoc),:required => true,
+    :question_group_id => developer_qs.id},
 
 questions.each do |question|
   options = question.delete(:options)

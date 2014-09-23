@@ -1,0 +1,50 @@
+<% content_for :body_class, 'admin-surveys index' %>
+<% content_for :body_id,    'admin-surveys-index' %>
+<% content_for :page_title, 'Surveys' %>
+
+<% if @surveys.any? %>
+<div class="table-section">
+  <table cellspacing="0" class="stripe">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Created at</th>
+        <th>Controls</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @surveys.each do |survey| %>
+        <tr>
+          <td>
+            <span title="<%= survey.id %>">
+              <%= survey.id %>
+            </span>
+          </td>
+          <td>
+            <span title="<%= time_ago_in_words(survey.created_at).html_safe %> ago">
+              <%= admin_time_string(survey.created_at).html_safe %>
+            </span>
+          </td>
+          <td class="controls ">
+            <ul>
+              <li>
+                <%= link_to 'details',
+                      admin_survey_path(survey),
+                      :class=> 'btn' %>
+              </li>
+            </ul>
+          </td>
+        </tr>
+      <% end %> <%# @surveys.each %>
+    </tbody>
+  </table>
+</div>
+
+<%= will_paginate @surveys %>
+
+<% else %>
+<div class="empty">
+  There are no surveys available.
+</div>
+<% end %>

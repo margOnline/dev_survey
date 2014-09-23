@@ -15,6 +15,7 @@ gem 'sass-rails', '~> 4.0.2'
 gem 'sidekiq'
 gem 'turbolinks'
 gem 'uglifier', '>= 1.3.0'
+gem 'will_paginate'
 
 group :doc do
   gem 'sdoc', require: false

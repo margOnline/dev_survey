@@ -5,4 +5,8 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_one :survey
+
+  def admin?
+    role == 'Admin'
+  end
 end

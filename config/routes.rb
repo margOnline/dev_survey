@@ -9,4 +9,8 @@ DevSurvey::Application.routes.draw do
   resources :users, :only => :index do
     resources :surveys, :only => [:new, :create]
   end
+
+  namespace :admin do
+    resources :surveys
+  end
 end

@@ -17,6 +17,10 @@ FactoryGirl.define do
     trait :with_auth_token do
       auth_token { |u| "auth-token-#{u.email}"}
     end
+
+    trait :admin do
+      role        'Admin'
+    end
   end
 
   #############################

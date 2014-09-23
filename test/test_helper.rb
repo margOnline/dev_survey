@@ -30,6 +30,17 @@ end
 # Include helpers for logging in with devise
 class ActionController::TestCase
   include Devise::TestHelpers
+
+  def mock_sign_in(user)
+    flexmock(@controller, :current_user => user)
+    user
+  end
+
+  def mock_admin_sign_in
+    admin = FactoryGirl.build_stubbed(:admin)
+    mock_sign_in(admin)
+    admin
+  end
 end
 
 # Include helpers and assertions for capybara

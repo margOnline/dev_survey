@@ -38,19 +38,19 @@ class Admin::SurveysControllerTest < ActionController::TestCase
 
     should 'index: not display' do
       get :index
-      assert_redirected_to new_user_session_path
+      assert_redirected_to root_path
     end
 
     should 'show: not display' do
       get :show, :id => @object.id
-      assert_redirected_to new_user_session_path
+      assert_redirected_to root_path
     end
 
     should 'not delete record' do
       assert_no_difference 'Survey.count' do
         delete :destroy, :id => @object.id
       end
-      assert_redirected_to new_user_session_path
+      assert_redirected_to root_path
     end
   end
 

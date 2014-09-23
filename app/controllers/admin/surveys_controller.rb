@@ -18,7 +18,7 @@ class Admin::SurveysController <ApplicationController
   private
 
   def validate_rights
-    redirect_to new_user_session_path unless user_signed_in? && current_user.admin?
+    redirect_to root_path unless user_signed_in? && current_user.admin?
   end
 
 end

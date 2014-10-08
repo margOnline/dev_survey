@@ -1,1 +1,21 @@
-show.html.erb
+<% content_for :body_class, 'admin-surveys show' %>
+<% content_for :body_id,    'admin-surveys-show' %>
+<% content_for :page_title, 'Surveys' %>
+
+<% content_for :page_header do %>
+  <h2>
+    <%= link_to yield(:page_title), admin_surveys_path %> &gt;
+    <%=h @survey.id %>
+  </h2>
+
+<% end %>
+
+<div id="admin-content">
+  <dl>
+    <dt>Submitter</dt>
+    <dd><%= @survey.user.email %></dd>
+    <dt>Questions</dt>
+    <dd><%= render 'questions' %></dd>
+  </dl>
+
+</div>

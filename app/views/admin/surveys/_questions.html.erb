@@ -1,0 +1,10 @@
+<% if @survey.questions.any? %>
+  <% @survey.questions.each do |question| %>
+    <h2><%= "#{question.title} ?" %></h2>
+    <% if question.answers.any? %>
+      <% question.answers.each do |answer| %>
+        <p><%= answer.text %></p>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>

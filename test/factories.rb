@@ -8,6 +8,7 @@ require 'factory_girl'
 
 FactoryGirl.define do
   sequence(:username) { |n| "user-#{n}" }
+  sequence(:token_code) {[*(1..9), *('A'..'Z')].flatten.sample(10).join}
 
   factory :user, :class => User do
     email         { |u| "#{FactoryGirl.generate(:username)}@example.com" }
@@ -49,6 +50,10 @@ FactoryGirl.define do
 
   factory :survey do |f|
     association :user
+  end
+
+  factory :token do |f|
+    code   { |c| "Co#{FactoryGirl.generate(:token_code)}" }
   end
 
 end

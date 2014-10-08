@@ -35,6 +35,7 @@ group :test do
   gem 'mini_backtrace'
   gem 'guard-minitest'
   gem 'shoulda'
+  gem 'pry'
 end
 
 group :deploy do

@@ -246,6 +246,7 @@ DEPENDENCIES
   minitest
   minitest-reporters
   pg
+  pry
   rails (= 4.0.9)
   rails-html-sanitizer
   rails_12factor

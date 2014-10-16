@@ -9,7 +9,7 @@
       <tr>
         <th>Id</th>
         <th>Created at</th>
-        <th>Controls</th>
+        <th>Submitted by</th>
       </tr>
     </thead>
 
@@ -26,14 +26,9 @@
               <%= admin_time_string(survey.created_at).html_safe %>
             </span>
           </td>
+          <td><%= survey.user.email %></td>
           <td class="controls ">
-            <ul>
-              <li>
-                <%= link_to 'details',
-                      admin_survey_path(survey),
-                      :class=> 'btn' %>
-              </li>
-            </ul>
+            <%= link_to 'details', admin_survey_path(survey), :class=> 'btn' %>
           </td>
         </tr>
       <% end %> <%# @surveys.each %>

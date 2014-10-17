@@ -7,6 +7,7 @@ class UserTest < ActiveSupport::TestCase
 
   context 'methods' do
     setup { @user = FactoryGirl.create(:user) }
+
     should 'know if a user is an admin' do
       @admin = FactoryGirl.create(:user, :role => 'Admin')
       assert @admin.admin?

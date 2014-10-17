@@ -1,14 +1,18 @@
 class SurveysController < ApplicationController
-  before_action :authenticate_user!
+  before_action :assign_user, :only => [:new]
 
   def new
-    @survey = current_user.build_survey
-    setup_questions
+    redirect_to root_path if !params[:token]
+    @user = User.where(:token => params[:token]).first
+    redirect_to user_survey_path(@user, @user.survey.id) if @user.survey_completed?
+    @survey = @user.build_survey
+    @user.dev? : setup_dev_questions : setup_company_questions
     @questions.each { @survey.answers.build }
   end
 
   def create
-    @survey = current_user.build_survey(survey_params)
+    @user = User.find(params[:survey][:user_id])
+    @survey = @user.build_survey(survey_params)
     if @survey.save
       flash[:notice] = 'Thanks for completing the survey'
       redirect_to thanks_path
@@ -32,7 +36,12 @@ class SurveysController < ApplicationController
     )
   end
 
-  def setup_questions
+  def setup_dev_questions
     @questions = Question.all
   end
+
+    def setup_company_questions
+    @questions = Question.all
+  end
+
 end

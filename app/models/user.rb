@@ -6,6 +6,10 @@ class User < ActiveRecord::Base
     role == 'Admin'
   end
 
+  def dev?
+    token[0,3] == 'Dev'
+  end
+
   def survey_completed?
     survey ? true : false
   end

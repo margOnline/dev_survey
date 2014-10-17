@@ -1,6 +1,7 @@
 <% exhibit(@survey) do |survey| %>
   <%= form_for @survey, :url => { :action => "create" },
       :html => { :class => 'general' } do |f| %>
+      <%= f.hidden_field(:user_id, :value => @user.id)  %>
     <%= survey.display_form(f, @questions) %>
   <% end %>
 <% end %>

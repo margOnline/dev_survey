@@ -6,7 +6,7 @@ class SurveysController < ApplicationController
     @user = User.where(:token => params[:token]).first
     redirect_to user_survey_path(@user, @user.survey.id) if @user.survey_completed?
     @survey = @user.build_survey
-    @user.dev? : setup_dev_questions : setup_company_questions
+    @user.dev? ? setup_dev_questions : setup_company_questions
     @questions.each { @survey.answers.build }
   end
 
@@ -37,11 +37,11 @@ class SurveysController < ApplicationController
   end
 
   def setup_dev_questions
-    @questions = Question.all
+    @questions = Question.for_dev + Question.general
   end
 
-    def setup_company_questions
-    @questions = Question.all
+  def setup_company_questions
+    @questions = Question.for_company + Question.general
   end
 
 end

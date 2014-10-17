@@ -14,6 +14,13 @@ class UserTest < ActiveSupport::TestCase
       refute @user.admin?
     end
 
+    should 'know if user is a dev' do
+      dev_user = FactoryGirl.create(:user, :token => 'Dev34974484485')
+      company_user = FactoryGirl.create(:user, :token => 'Co34974484485')
+      refute company_user.dev?
+      assert dev_user.dev?
+    end
+
     should 'know if survey has been completed' do
       user_with_survey = FactoryGirl.create(:user, :with_survey)
       refute @user.survey_completed?

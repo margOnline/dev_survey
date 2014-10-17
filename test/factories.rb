@@ -49,6 +49,14 @@ FactoryGirl.define do
     trait :required do
       required true
     end
+
+    trait :for_dev do
+      question_group_id 1
+    end
+
+    trait :for_company do
+      question_group_id 2
+    end
   end
 
   factory :survey do |f|

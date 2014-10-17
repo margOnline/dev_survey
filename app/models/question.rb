@@ -10,4 +10,9 @@ class Question < ActiveRecord::Base
   validates :title, :presence => true
   validates :field_type,
       :presence => true, :inclusion => { :in => QUESTION_TYPES }
+
+  ### Scopes ###
+  scope :for_dev, -> { where(:question_group_id => 1) }
+  scope :for_company, -> { where(:question_group_id => 2) }
+  scope :general, -> { where(:question_group_id => nil) }
 end

@@ -28,7 +28,6 @@ GEM
     addressable (2.3.6)
     ansi (1.4.3)
     arel (4.0.2)
-    bcrypt (3.1.7)
     binding_of_caller (0.7.3.pre1)
       debug_inspector (>= 0.0.1)
     bootstrap-sass (3.2.0.0)
@@ -52,13 +51,6 @@ GEM
     connection_pool (2.0.0)
     debug_inspector (0.0.2)
     debugger-linecache (1.2.0)
-    devise (3.4.0)
-      bcrypt (~> 3.0)
-      orm_adapter (~> 0.1)
-      railties (>= 3.2.6, < 5)
-      responders
-      thread_safe (~> 0.1)
-      warden (~> 1.2.3)
     erubis (2.7.0)
     excon (0.40.0)
     execjs (2.2.1)
@@ -128,7 +120,6 @@ GEM
     netrc (0.7.7)
     nokogiri (1.6.3.1)
       mini_portile (= 0.6.0)
-    orm_adapter (0.5.0)
     pg (0.17.1)
     polyglot (0.3.5)
     powerbar (1.0.11)
@@ -170,8 +161,6 @@ GEM
     redis (3.1.0)
     redis-namespace (1.5.1)
       redis (~> 3.0, >= 3.0.4)
-    responders (1.1.1)
-      railties (>= 3.2, < 4.2)
     rest-client (1.6.7)
       mime-types (>= 1.16)
     rubyzip (0.9.9)
@@ -221,8 +210,6 @@ GEM
     uglifier (2.5.3)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
-    warden (1.2.3)
-      rack (>= 1.0)
     web-console (2.0.0.beta3)
       activemodel (~> 4.0)
       binding_of_caller (= 0.7.3.pre1)
@@ -237,7 +224,6 @@ DEPENDENCIES
   bootstrap-sass (= 3.2.0.0)
   byebug (= 3.4.0)
   coffee-rails (~> 4.0.0)
-  devise
   exhibit
   factory_girl_rails
   flexmock

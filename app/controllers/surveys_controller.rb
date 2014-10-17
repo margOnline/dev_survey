@@ -2,7 +2,6 @@ class SurveysController < ApplicationController
   before_action :authenticate_user!
 
   def new
-    return if current_user.survey
     @survey = current_user.build_survey
     setup_questions
     @questions.each { @survey.answers.build }
@@ -18,6 +17,10 @@ class SurveysController < ApplicationController
       flash[:error] = 'Please amend the errors indicated below.'
       render :new
     end
+  end
+
+  def show
+    @survey = Survey.find(params[:id])
   end
 
   private

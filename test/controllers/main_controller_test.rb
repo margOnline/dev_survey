@@ -7,7 +7,7 @@ class MainControllerTest < ActionController::TestCase
   end
 
   should 'get thanks' do
-    get :index
+    get :thanks
     assert_response :success
   end
 

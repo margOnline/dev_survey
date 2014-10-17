@@ -4,9 +4,8 @@ DevSurvey::Application.routes.draw do
   get '/thanks', :to => 'main#thanks'
 
   ### Users
-  devise_for :users
 
-  resources :users, :only => :index do
+  resources :users do
     resources :surveys, :only => [:new, :create, :show]
   end
 

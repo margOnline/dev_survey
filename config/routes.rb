@@ -7,7 +7,7 @@ DevSurvey::Application.routes.draw do
   devise_for :users
 
   resources :users, :only => :index do
-    resources :surveys, :only => [:new, :create]
+    resources :surveys, :only => [:new, :create, :show]
   end
 
   namespace :admin do

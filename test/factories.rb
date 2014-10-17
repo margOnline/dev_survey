@@ -12,8 +12,6 @@ FactoryGirl.define do
 
   factory :user, :class => User do
     email         { |u| "#{FactoryGirl.generate(:username)}@example.com" }
-    password      'secret123'
-    password_confirmation 'secret123'
 
     trait :with_auth_token do
       auth_token { |u| "auth-token-#{u.email}"}
@@ -22,6 +20,11 @@ FactoryGirl.define do
     trait :admin do
       role        'Admin'
     end
+
+    trait :with_survey do
+      association :survey
+    end
+
   end
 
   #############################

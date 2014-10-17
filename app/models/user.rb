@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
     role == 'Admin'
   end
 
-  def token_used?
-    user.token
+  def survey_completed?
+    survey ? true : false
   end
 end

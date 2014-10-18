@@ -1,9 +1,9 @@
 class SurveysController < ApplicationController
+  before_action :validate_rights, :only => [:new]
 
   def new
-    redirect_to root_path if !params[:token]
     @user = User.where(:token => params[:token]).first
-    redirect_to user_survey_path(@user, @user.survey.id) if @user.survey_completed?
+    redirect_to root_path(@user, @user.survey.id) if @user.survey_completed?
     @survey = @user.build_survey
     setup_questions
     @questions.each { @survey.answers.build }
@@ -41,6 +41,10 @@ class SurveysController < ApplicationController
 
   def setup_company_questions
     @questions = Question.for_company + Question.general
+  end
+
+  def validate_rights
+    redirect_to root_path if !params[:token]
   end
 
 end

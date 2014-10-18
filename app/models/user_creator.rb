@@ -7,8 +7,10 @@ class UserCreator
   end
 
   def create!
-    CSV.new(@filename, headers: :first_row).each do |row|
-      User.create(row.to_hash)
+   csv_text = File.read("#{Rails.root}/tmp/Dev-token_codes.csv")
+    csv = CSV.parse(csv_text, :headers => true)
+    csv.each do |row|
+      User.create!(row.to_hash)
     end
   end
 

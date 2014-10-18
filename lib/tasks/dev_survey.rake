@@ -44,5 +44,5 @@ def invalid_users_args_message
 end
 
 def invalid_file_message
-  "requires a csv file"
+  "A csv file is required."
 end

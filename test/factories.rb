@@ -14,6 +14,10 @@ FactoryGirl.define do
     email         { |u| "#{FactoryGirl.generate(:username)}@example.com" }
     token         { |u| "Dev#{FactoryGirl.generate(:token_code)}"}
 
+    trait :company do
+      token       { |u| "Co#{FactoryGirl.generate(:token_code)}"}
+    end
+
     trait :with_auth_token do
       auth_token { |u| "auth-token-#{u.email}"}
     end

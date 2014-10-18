@@ -22,10 +22,6 @@ class SurveysController < ApplicationController
     end
   end
 
-  def show
-    @survey = Survey.find(params[:id])
-  end
-
   def setup_questions
      @user.dev? ? setup_dev_questions : setup_company_questions
   end

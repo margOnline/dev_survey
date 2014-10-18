@@ -6,10 +6,29 @@ class SurveysControllerTest < ActionController::TestCase
   end
 
   context 'new' do
-    @survey = FactoryGirl.build(:survey, :user => @user)
+    @survey = FactoryGirl.build(:survey)
     should 'render the form' do
-      get :new, :user_id => @user.id
+      get :new, :token => @user.token
       assert_assigns :survey, @survey
+    end
+
+    context 'set up correct questions' do
+      setup do
+        @dev_question = FactoryGirl.create(:question, :for_dev)
+        @company_question = FactoryGirl.create(:question, :for_company)
+        @general_question = FactoryGirl.create(:question)
+      end
+
+      should 'for developer' do
+        get :new, :token => @user.token
+        assert_assigns :questions, [@dev_question, @general_question]
+      end
+
+      should 'for company' do
+        company_user = FactoryGirl.create(:user, :company)
+        get :new, :token => company_user.token
+        assert_assigns :questions, [@company_question, @general_question]
+      end
     end
   end
 

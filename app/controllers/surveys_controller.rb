@@ -1,12 +1,11 @@
 class SurveysController < ApplicationController
-  before_action :assign_user, :only => [:new]
 
   def new
     redirect_to root_path if !params[:token]
     @user = User.where(:token => params[:token]).first
     redirect_to user_survey_path(@user, @user.survey.id) if @user.survey_completed?
     @survey = @user.build_survey
-    @user.dev? ? setup_dev_questions : setup_company_questions
+    setup_questions
     @questions.each { @survey.answers.build }
   end
 
@@ -25,6 +24,10 @@ class SurveysController < ApplicationController
 
   def show
     @survey = Survey.find(params[:id])
+  end
+
+  def setup_questions
+     @user.dev? ? setup_dev_questions : setup_company_questions
   end
 
   private

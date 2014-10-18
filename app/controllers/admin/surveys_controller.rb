@@ -1,5 +1,4 @@
 class Admin::SurveysController <ApplicationController
-  before_action :authenticate_user!
   before_action :validate_rights
 
   def index
@@ -18,7 +17,7 @@ class Admin::SurveysController <ApplicationController
   private
 
   def validate_rights
-    redirect_to root_path unless user_signed_in? && current_user.admin?
+    redirect_to root_path unless params[:token] && params[:token] == ENV['ADMIN_SECRET_KEY']
   end
 
 end

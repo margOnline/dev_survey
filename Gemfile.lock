@@ -51,6 +51,7 @@ GEM
     connection_pool (2.0.0)
     debug_inspector (0.0.2)
     debugger-linecache (1.2.0)
+    envyable (0.0.2)
     erubis (2.7.0)
     excon (0.40.0)
     execjs (2.2.1)
@@ -224,6 +225,7 @@ DEPENDENCIES
   bootstrap-sass (= 3.2.0.0)
   byebug (= 3.4.0)
   coffee-rails (~> 4.0.0)
+  envyable
   exhibit
   factory_girl_rails
   flexmock

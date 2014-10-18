@@ -3,7 +3,6 @@ require 'test_helper'
 class SurveysControllerTest < ActionController::TestCase
   setup do
     @user = FactoryGirl.create(:user)
-    sign_in(@user)
   end
 
   context 'new' do
@@ -24,15 +23,17 @@ class SurveysControllerTest < ActionController::TestCase
       should 'save survey with required and unrequired questions' do
         assert_difference 'Survey.count' do
           assert_difference 'Answer.count', 2 do
-            post :create, :user_id => @user.id,
-              :survey => { :answers_attributes => {
-                "0" => {
-                  :question_id => @required_question.id, :text => 'required'
+            post :create,
+              :survey => {
+                :answers_attributes => {
+                  "0" => {
+                    :question_id => @required_question.id, :text => 'required'
+                    },
+                  "1" => {
+                    :question_id => @unrequired_question.id, :text => 'not required'
+                    }
                   },
-                "1" => {
-                  :question_id => @unrequired_question.id, :text => 'not required'
-                  }
-                }
+                :user_id => @user.id
               }
           end
         end
@@ -43,13 +44,15 @@ class SurveysControllerTest < ActionController::TestCase
       should 'save survey with only required questions' do
         assert_difference 'Survey.count' do
           assert_difference 'Answer.count', 1 do
-            post :create, :user_id => @user.id,
-              :survey => { :answers_attributes => {
-                "0" => {
-                  :question_id => @required_question.id, :text => 'ipsem lorem'
-                }
+            post :create,
+              :survey => {
+                :answers_attributes => {
+                  "0" => {
+                    :question_id => @required_question.id, :text => 'ipsem lorem'
+                  }
+                },
+                :user_id => @user.id
               }
-            }
           end
         end
         assert_response :redirect
@@ -70,24 +73,26 @@ class SurveysControllerTest < ActionController::TestCase
           assert_difference 'Survey.count' do
             assert_difference 'Answer.count', 3 do
               assert_difference 'QuestionAnswerChoice.count', 3 do
-                post :create, :user_id => @user.id,
-                  :survey => { :answers_attributes => {
-                  "0" => {
-                    :question_id => @required_question.id, :text => 'ipsem lorem'
-                  },
-                  "1" => {
-                      :question_id => @checkbox.id, :question_answer_choices_attributes => [
-                        {:possible_answer_id => @checkbox.possible_answers[0].id},
-                        {:possible_answer_id =>  @checkbox.possible_answers[1].id}
-                      ]
+                post :create,
+                  :survey => {
+                    :user_id => @user.id,
+                    :answers_attributes => {
+                    "0" => {
+                      :question_id => @required_question.id, :text => 'ipsem lorem'
                     },
-                  "2" => {
-                      :question_id => @radio_button.id, :question_answer_choices_attributes => [
-                        {:possible_answer_id => @radio_button.possible_answers[0].id}
-                      ]
+                    "1" => {
+                        :question_id => @checkbox.id, :question_answer_choices_attributes => [
+                          {:possible_answer_id => @checkbox.possible_answers[0].id},
+                          {:possible_answer_id =>  @checkbox.possible_answers[1].id}
+                        ]
+                      },
+                    "2" => {
+                        :question_id => @radio_button.id, :question_answer_choices_attributes => [
+                          {:possible_answer_id => @radio_button.possible_answers[0].id}
+                        ]
+                      }
                     }
                   }
-                }
               end
             end
           end
@@ -100,8 +105,8 @@ class SurveysControllerTest < ActionController::TestCase
           assert_no_difference 'Survey.count' do
             assert_no_difference 'Answer.count' do
               assert_no_difference 'QuestionAnswerChoice.count'do
-                post :create, :user_id => @user.id,
-                  :survey => { :answers_attributes => {
+                post :create,
+                  :survey => { :user_id => @user.id, :answers_attributes => {
                   "0" => {
                     :question_id => @required_question.id, :text => 'ipsem lorem'
                   },
@@ -124,19 +129,19 @@ class SurveysControllerTest < ActionController::TestCase
           assert_no_difference 'Survey.count' do
             assert_no_difference 'Answer.count' do
               assert_no_difference 'QuestionAnswerChoice.count'do
-                post :create, :user_id => @user.id,
-                  :survey => { :answers_attributes => {
-                  "0" => {
-                    :question_id => @required_question.id, :text => 'ipsem lorem'
-                  },
-                  "1" => {
-                      :question_id => @checkbox.id, :question_answer_choices_attributes => [
-                        {:possible_answer_id => @checkbox.possible_answers[0].id},
-                        {:possible_answer_id =>  @checkbox.possible_answers[1].id}
-                      ]
+                post :create,
+                  :survey => { :user_id => @user.id, :answers_attributes => {
+                    "0" => {
+                      :question_id => @required_question.id, :text => 'ipsem lorem'
                     },
+                    "1" => {
+                        :question_id => @checkbox.id, :question_answer_choices_attributes => [
+                          {:possible_answer_id => @checkbox.possible_answers[0].id},
+                          {:possible_answer_id =>  @checkbox.possible_answers[1].id}
+                        ]
+                      },
+                    }
                   }
-                }
               end
             end
           end
@@ -149,8 +154,8 @@ class SurveysControllerTest < ActionController::TestCase
       should 'render new form on submission with errors' do
         assert_no_difference 'Survey.count' do
           assert_no_difference 'Answer.count' do
-            post :create, :user_id => @user.id,
-              :survey => {:answers_attributes => {
+            post :create,
+              :survey => { :user_id => @user.id, :answers_attributes => {
                 "0" => {
                   :question_id => @required_question.id, :text => ''
                 }

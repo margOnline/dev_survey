@@ -36,11 +36,15 @@ class SurveysController < ApplicationController
   end
 
   def setup_dev_questions
-    @questions = Question.for_dev + Question.general + Question.background
+    @questions = (Question.for_dev + Question.general + Question.background).sort_by do |q|
+      q.question_group
+    end
   end
 
   def setup_company_questions
-    @questions = Question.for_company + Question.general
+    @questions = (Question.for_company + Question.general).sort_by do |q|
+      q.question_group
+    end
   end
 
   def validate_rights

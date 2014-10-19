@@ -36,7 +36,7 @@ class SurveysController < ApplicationController
   end
 
   def setup_dev_questions
-    @questions = Question.for_dev + Question.general
+    @questions = Question.for_dev + Question.general + Question.background
   end
 
   def setup_company_questions

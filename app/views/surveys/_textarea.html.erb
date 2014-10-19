@@ -1,0 +1,8 @@
+<li><h5><%= question.title %><%= show_required(question) %></h5></li>
+<%= show_explanation_for(question) if question.explanation.present? %>
+<%= hidden_field_tag "survey[answers_attributes][#{index}][question_id]", question.id %>
+<% if !answer.new_record? %>
+  <%= hidden_field_tag "survey[answers_attributes][#{index}][id]",
+      answer.id %>
+<% end %>
+

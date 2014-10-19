@@ -1,5 +1,5 @@
 class Question < ActiveRecord::Base
-  QUESTION_TYPES = %w(TextField Checkbox RadioSelect)
+  QUESTION_TYPES = %w(TextField Checkbox RadioSelect Textarea)
 
   ## Associations
   has_many :answers
@@ -12,7 +12,8 @@ class Question < ActiveRecord::Base
       :presence => true, :inclusion => { :in => QUESTION_TYPES }
 
   ### Scopes ###
-  scope :for_dev, -> { where(:question_group_id => 1) }
-  scope :for_company, -> { where(:question_group_id => 2) }
-  scope :general, -> { where(:question_group_id => nil) }
+  scope :for_dev, -> { where(:question_group_id => 2) }
+  scope :for_company, -> { where(:question_group_id => 1) }
+  scope :background, -> { where(:question_group_id => 3) }
+  scope :general, -> { where(:question_group_id => 4) }
 end

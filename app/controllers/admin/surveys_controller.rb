@@ -1,5 +1,5 @@
 class Admin::SurveysController <ApplicationController
-  before_action :validate_rights
+  before_action :validate_rights, :only => [:index, :destroy]
 
   def index
     @surveys = Survey.paginate(:page => params[:page])

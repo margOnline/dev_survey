@@ -5,6 +5,6 @@ class AdminMailer < ActionMailer::Base
 
   def notify_admin(survey_id)
     @survey = Survey.find(survey_id)
-    mail(:to => 'margo@mintdigital.com', :subject => "Survey Completed")
+    mail(:to => ENV['ADMIN_EMAIL'], :subject => "Survey Completed")
   end
 end

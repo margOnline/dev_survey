@@ -1,9 +1,13 @@
-<li><%= question.title %><%= show_required(question) %></li>
+<li><h5><%= question.title %><%= show_required(question) %></h5></li>
 <%= show_explanation_for(question) if question.explanation.present? %>
+<% if answer.errors %>
+    <%= error_messages_for(answer) %>
+  <% end %>
 <%= hidden_field_tag "survey[answers_attributes][#{index}][question_id]", question.id %>
 <% if !answer.new_record? %>
   <%= hidden_field_tag "survey[answers_attributes][#{index}][id]", answer.id %>
 <% end %>
+<ul>
 <% question.possible_answers.each do |option| %>
   <li class="radio">
     <% selected_answer = answer.question_answer_choices.any? ?
@@ -13,3 +17,4 @@
     <%= label_tag option.text %>
   </li>
 <% end %>
+</ul>

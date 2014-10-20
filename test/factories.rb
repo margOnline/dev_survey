@@ -55,12 +55,28 @@ FactoryGirl.define do
       required true
     end
 
-    trait :for_dev do
-      question_group_id 1
+    trait :for_developer do
+      association :question_group
     end
 
     trait :for_company do
-      question_group_id 2
+      association :question_group, :company
+    end
+
+    trait :general do
+      association :question_group, :general
+    end
+  end
+
+  factory :question_group do
+    name 'developer'
+
+    trait :company do
+      name 'company'
+    end
+
+    trait :general do
+      name 'general'
     end
   end
 

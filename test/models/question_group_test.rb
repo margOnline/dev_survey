@@ -6,28 +6,19 @@ class QuestionGroupTest < ActiveSupport::TestCase
     should validate_presence_of :name
 
     context 'scopes' do
-      setup do
-        @dev_question = FactoryGirl.create(:question, :for_dev)
-        @company_question = FactoryGirl.create(:question, :for_company)
-        @general_question = FactoryGirl.create(:question)
+      should 'return developer group' do
+        question_group = FactoryGirl.create(:question_group)
+        assert_equal QuestionGroup.developer, [question_group]
       end
 
-      should 'return questions for devs' do
-        assert Question.for_dev.include?(@dev_question)
-        refute Question.for_dev.include?(@company_question)
-        refute Question.for_dev.include?(@general_question)
+      should 'return company group' do
+        question_group = FactoryGirl.create(:question_group, :name => 'company')
+        assert_equal QuestionGroup.company, [question_group]
       end
 
-      should 'return questions for company' do
-        assert Question.for_company.include?(@company_question)
-        refute Question.for_company.include?(@dev_question)
-        refute Question.for_company.include?(@general_question)
-      end
-
-      should 'return general questions' do
-        assert Question.general.include?(@general_question)
-        refute Question.general.include?(@dev_question)
-        refute Question.general.include?(@company_question)
+      should 'return general group' do
+        question_group = FactoryGirl.create(:question_group, :name => 'general')
+        assert_equal QuestionGroup.general, [question_group]
       end
     end
   end

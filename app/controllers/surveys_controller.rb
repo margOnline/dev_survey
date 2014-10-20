@@ -5,7 +5,8 @@ class SurveysController < ApplicationController
     @user = User.where(:token => params[:token]).first
     redirect_to root_path(@user, @user.survey.id) if @user.survey_completed?
     @survey = @user.build_survey
-    setup_questions
+    @questions = Question.all
+    # setup_questions
     @questions.each { @survey.answers.build }
   end
 
@@ -16,7 +17,8 @@ class SurveysController < ApplicationController
       flash[:notice] = 'Thanks for completing the survey'
       redirect_to thanks_path
     else
-      setup_questions
+      @questions = Question.all
+      # setup_questions
       flash[:error] = 'Please amend the errors indicated below.'
       render :new
     end
@@ -36,7 +38,7 @@ class SurveysController < ApplicationController
   end
 
   def setup_dev_questions
-    @questions = (Question.for_dev + Question.general + Question.background).sort_by do |q|
+    @questions = (Question.for_dev + Question.general).sort_by do |q|
       q.question_group
     end
   end

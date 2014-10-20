@@ -1,9 +1,11 @@
-<li>
-  <%= label_tag "survey[answers_attributes][#{index}][text]", question.title + show_required(question) %>
+<li><h5>
+  <%= label_tag "survey[answers_attributes][#{index}][text]", question.title + show_required(question) %></h5></li>
+  <% if answer.errors %>
+    <%= error_messages_for(answer) %>
+  <% end %>
   <%= hidden_field_tag "survey[answers_attributes][#{index}][question_id]", question.id %>
   <% if !answer.new_record? %>
     <%= hidden_field_tag "survey[answers_attributes][#{index}][id]", answer.id %>
   <% end %>
-  <%= text_area_tag "survey[answers_attributes][#{index}][text]", answer.text %>
-  <%= error_messages_for(answer) %>
+  <%= text_area_tag "survey[answers_attributes][#{index}][text]", answer.text, :rows =>10, :cols => 25 %>
 </li>

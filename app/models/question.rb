@@ -11,9 +11,17 @@ class Question < ActiveRecord::Base
   validates :field_type,
       :presence => true, :inclusion => { :in => QUESTION_TYPES }
 
-  ### Scopes ###
-  scope :for_dev, -> { where(:question_group_id => 2) }
-  scope :for_company, -> { where(:question_group_id => 1) }
-  scope :background, -> { where(:question_group_id => 3) }
-  scope :general, -> { where(:question_group_id => 4) }
+  ## Class Methods ##
+  def self.for_developer
+    joins(:question_group).merge(QuestionGroup.developer)
+  end
+
+  def self.for_company
+    joins(:question_group).merge(QuestionGroup.company)
+  end
+
+  def self.general
+    joins(:question_group).merge(QuestionGroup.general)
+  end
+
 end

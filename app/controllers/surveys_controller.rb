@@ -5,8 +5,7 @@ class SurveysController < ApplicationController
     @user = User.where(:token => params[:token]).first
     redirect_to root_path(@user, @user.survey.id) if @user.survey_completed?
     @survey = @user.build_survey
-    @questions = Question.all
-    # setup_questions
+    setup_questions
     @questions.each { @survey.answers.build }
   end
 
@@ -14,11 +13,9 @@ class SurveysController < ApplicationController
     @user = User.find(params[:survey][:user_id])
     @survey = @user.build_survey(survey_params)
     if @survey.save
-      flash[:notice] = 'Thanks for completing the survey'
       redirect_to thanks_path
     else
-      @questions = Question.all
-      # setup_questions
+      setup_questions
       flash[:error] = 'Please amend the errors indicated below.'
       render :new
     end

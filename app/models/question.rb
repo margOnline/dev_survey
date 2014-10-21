@@ -12,8 +12,8 @@ class Question < ActiveRecord::Base
       :presence => true, :inclusion => { :in => QUESTION_TYPES }
 
   ## Class Methods ##
-  def self.for_developer
-    joins(:question_group).merge(QuestionGroup.developer)
+  def self.for_dev
+    joins(:question_group).merge(QuestionGroup.dev)
   end
 
   def self.for_company
@@ -24,4 +24,15 @@ class Question < ActiveRecord::Base
     joins(:question_group).merge(QuestionGroup.general)
   end
 
+  def self.required_for_dev
+    (required.for_dev + required.general)
+  end
+
+  def self.required_for_company
+    (required.for_dev + required.general)
+  end
+
+  ## Scopes ##
+  scope :required, -> { where(:required => true ) }
+  scope :required_general, -> { required.general }
 end

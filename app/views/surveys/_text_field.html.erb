@@ -1,5 +1,4 @@
-<li></h5>
-  <%= label_tag "survey[answers_attributes][#{index}][text]", question.title + show_required(question) %></h5>
+<li><h5><%= question.title %><%= show_required(question) %></h5>
   <% if answer.errors %>
     <%= error_messages_for(answer) %>
   <% end %>

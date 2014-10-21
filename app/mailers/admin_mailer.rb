@@ -5,6 +5,7 @@ class AdminMailer < ActionMailer::Base
 
   def notify_admin(survey_id)
     @survey = Survey.find(survey_id)
+    Rails.logger.info("\n\n ***** EMAIL Sent now to #{ENV['ADMIN_EMAIL']} ***** \n\n")
     mail(:to => ENV['ADMIN_EMAIL'], :subject => "Survey Completed")
   end
 end

@@ -3,7 +3,7 @@
     <h4><%= "#{question.title}" %></h4>
     <% if question.answers.any? %>
       <% question.answers.each do |answer| %>
-        <p><%= answer.id %></p>
+        <p><%= answer.text %></p>
       <% end %>
     <% end %>
   <% end %>

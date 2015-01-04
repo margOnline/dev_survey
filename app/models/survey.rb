@@ -13,10 +13,12 @@ class Survey < ActiveRecord::Base
   private
 
   def required_questions_completed
-    @required_questions = user.dev? ? required_dev_questions : required_company_questions
+    if user
+      @required_questions = user.dev? ? required_dev_questions : required_company_questions
       if @required_questions.count != answers_for_required_questions.count
         errors.add(:user_id, "Please answer all required questions")
       end
+    end
   end
 
   def required_dev_questions

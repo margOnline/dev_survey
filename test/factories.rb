@@ -55,7 +55,7 @@ FactoryGirl.define do
       required true
     end
 
-    trait :for_developer do
+    trait :for_dev do
       association :question_group
     end
 

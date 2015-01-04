@@ -33,12 +33,12 @@ class Admin::SurveysControllerTest < ActionController::TestCase
       @object = FactoryGirl.create(:survey)
     end
 
-    should 'index: not display' do
+    should 'index: redirect' do
       get :index
       assert_redirected_to root_path
     end
 
-    should 'show: not display' do
+    should 'show: redirect' do
       get :show, :id => @object.id
       assert_redirected_to root_path
     end
@@ -56,12 +56,12 @@ class Admin::SurveysControllerTest < ActionController::TestCase
       @object = FactoryGirl.create(:survey)
     end
 
-    should 'index: not display' do
+    should 'index: redirect' do
       get :index, :token => 'admin'
       assert_redirected_to root_path
     end
 
-    should 'show: not display' do
+    should 'show: redirect' do
       get :show, :id => @object.id, :token => 'admin'
       assert_redirected_to root_path
     end

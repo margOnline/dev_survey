@@ -13,15 +13,15 @@ class QuestionTest < ActiveSupport::TestCase
 
     context 'class methods' do
       setup do
-        @dev_question = FactoryGirl.create(:question, :for_developer)
+        @dev_question = FactoryGirl.create(:question, :for_dev)
         @company_question = FactoryGirl.create(:question, :for_company)
         @general_question = FactoryGirl.create(:question, :general)
       end
 
       should 'return questions for devs' do
-        assert Question.for_developer.include?(@dev_question)
-        refute Question.for_developer.include?(@company_question)
-        refute Question.for_developer.include?(@general_question)
+        assert Question.for_dev.include?(@dev_question)
+        refute Question.for_dev.include?(@company_question)
+        refute Question.for_dev.include?(@general_question)
       end
 
       should 'return questions for company' do

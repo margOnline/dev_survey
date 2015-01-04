@@ -8,7 +8,7 @@ class QuestionGroupTest < ActiveSupport::TestCase
     context 'scopes' do
       should 'return developer group' do
         question_group = FactoryGirl.create(:question_group)
-        assert_equal QuestionGroup.developer, [question_group]
+        assert_equal QuestionGroup.dev, [question_group]
       end
 
       should 'return company group' do

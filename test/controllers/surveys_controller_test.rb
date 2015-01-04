@@ -16,7 +16,7 @@ class SurveysControllerTest < ActionController::TestCase
       setup do
         @dev_question = FactoryGirl.create(:question, :for_dev)
         @company_question = FactoryGirl.create(:question, :for_company)
-        @general_question = FactoryGirl.create(:question)
+        @general_question = FactoryGirl.create(:question, :general)
       end
 
       should 'for developer' do

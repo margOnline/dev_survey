@@ -4,7 +4,7 @@ class UserCreatorTest < ActiveSupport::TestCase
 
   context 'UserCreator' do
     setup do
-      @args = { :filename => "#{Rails.root}/tmp/Dev-token_codes.csv" }
+      @args = { :filename => "Dev-token_codes.csv" }
       @filename = @args[:filename]
       @user_creator = UserCreator.new(@args)
     end

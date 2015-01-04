@@ -11,7 +11,6 @@ class UserCreator
     csv = CSV.parse(csv_text, :headers => true)
     csv.each do |row|
       User.create!(row.to_hash)
-      puts row
     end
   end
 

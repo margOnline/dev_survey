@@ -48,6 +48,7 @@ FactoryGirl.define do
   end
 
   factory :question do |f|
+    association :question_group
     title 'What colour is the sky?'
     field_type 'TextField'
 

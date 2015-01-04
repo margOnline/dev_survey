@@ -7,6 +7,7 @@ class Question < ActiveRecord::Base
   belongs_to :question_group
 
   ## Validations
+  validates :question_group, :presence => true
   validates :title, :presence => true
   validates :field_type,
       :presence => true, :inclusion => { :in => QUESTION_TYPES }

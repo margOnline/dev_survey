@@ -29,7 +29,7 @@ class Question < ActiveRecord::Base
   end
 
   def self.required_for_company
-    (required.for_dev + required.general)
+    (required.for_company + required.general)
   end
 
   ## Scopes ##

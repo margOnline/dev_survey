@@ -32,7 +32,7 @@ questions = [
     :field_type => "RadioSelect",
     :options => %w(yes no),:required => true,
     :question_group_id => general.id},
-  { :title => "Do you wish to receive the survey results?", :field_type => "Checkbox",
+  { :title => "Do you wish to receive the survey results?", :field_type => "RadioSelect",
     :options => ["Yes", "No"],
     :question_group_id => general.id},
   { :title => "How often do you receive feedback?", :field_type => "RadioSelect",
@@ -47,9 +47,9 @@ questions = [
   { :title => "If you could change one thing about the last 3-6 months, what would it be?",
     :field_type => "Textarea",
     :question_group_id => dev.id},
-  { :title => "How often do you pair programme", :field_type => "RadioSelect",
+  { :title => "Does your company assign mentors to junior developers", :field_type => "RadioSelect",
     :options => ["Always", "Frequently", "Occasionally", "Rarely", "Never"],
-    :question_group_id => dev.id},
+    :question_group_id => company.id},
   { :title => "Feel free to add any comments, suggestions", :field_type => "Textarea",
     :question_group_id => general.id}
 ]

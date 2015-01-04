@@ -17,7 +17,7 @@ class Answer < ActiveRecord::Base
       when "TextField"
         errors.add(:text, "This question is required") unless text.present?
       else
-        errors.add(:base, "This question is required") unless question_answer_choices.any?
+        errors.add(:text, "This question is required") unless question_answer_choices.any?
       end
     end
   end

@@ -1,10 +1,21 @@
 <% if @survey.questions.any? %>
-  <% @survey.questions.each do |question| %>
-    <h4><%= "#{question.title}" %></h4>
-    <% if question.answers.any? %>
-      <% question.answers.each do |answer| %>
-        <p><%= answer.text %></p>
+  <% @survey.answers_by_question.each do |question, answers| %>
+    <h4><%= question.title %></h4>
+    <% if answers.any? %>
+     
+      <% case question.field_type %>
+      <% when "RadioSelect" %>
+        <%= answers_for_radio_select answers %>
+      <% when "Textarea" %>
+        <%= answers_for_textarea answers %>
+      <% when "Checkbox" %>
+        <%= answers_for_checkbox answers %>
+      <% else %>
+        <p><%= answers.first.text %></p>
       <% end %>
+      
+    <% else %>
+      <p>n/a</p>
     <% end %>
   <% end %>
 <% end %>

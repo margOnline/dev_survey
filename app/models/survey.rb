@@ -10,6 +10,10 @@ class Survey < ActiveRecord::Base
   validates :user, :presence => true
   validate :required_questions_completed
 
+  def answers_by_question
+    answers.includes(:question).group_by(&:question)  
+  end
+
   private
 
   def required_questions_completed

@@ -27,5 +27,15 @@ class SurveyTest < ActiveSupport::TestCase
         and_return(mock)
       @survey.run_callbacks(:commit)
     end
+
+    should 'return answers indexed by question' do
+      survey = FactoryGirl.build(:survey)
+      question1 = FactoryGirl.create(:question)
+      question2 = FactoryGirl.create(:question)
+      answer1 = FactoryGirl.create(:answer, survey: survey, question: question2, text: 'ipsem')
+      answer2 = FactoryGirl.create(:answer, survey: survey, question: question1, text: 'ipsem')
+      answer3 = FactoryGirl.create(:answer, survey: survey, question: question2, text: 'ipsem')
+      assert_equal survey.answers_by_question, {question1 => [answer2], question2 => [answer1, answer3]}
+    end
   end
 end

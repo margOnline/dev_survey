@@ -1,0 +1,16 @@
+<table>
+  <thead>
+    <tr>
+      <td>Id</td>
+      <td>Title</td>
+      <td>Number of Answers</td>
+    </tr>
+  </thead>
+  <% @questions.each do |question| %>
+  <tr>
+    <td><%= link_to question.id, admin_question_path(question) %></td>
+    <td><%= question.title %></td>
+    <td><%= question.answers.count %> </td>
+  </tr>
+  <% end %>
+</table>

@@ -36,4 +36,8 @@ class Question < ActiveRecord::Base
   ## Scopes ##
   scope :required, -> { where(:required => true ) }
   scope :required_general, -> { required.general }
+
+  def answers_by_possible_answer
+    Hash[possible_answers.map {|pa| [pa, pa.answers.count]}]
+  end
 end

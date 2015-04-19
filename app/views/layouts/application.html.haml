@@ -1,0 +1,22 @@
+!!!
+/[if IE 8 ] <html lang="en" class="no-js ie8">
+/[if IE 9 ] <html lang="en" class="no-js ie9">
+/ [if (gt IE 9)|!(IE)]><!
+%html.no-js{:lang => "en"}
+  / <![endif]
+  %head
+    %title Dev Survey
+    = stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true
+    = javascript_include_tag "application", "data-turbolinks-track" => true
+    = csrf_meta_tags
+    = favicon_link_tag 'favicon.ico'
+    %meta{ name: "HandheldFriendly", content: "True" }
+    %meta{ content: "width=device-width, initial-scale=1", name: "viewport" }
+    = render 'layouts/shim' 
+
+  %body
+    .container
+      = render 'layouts/header' 
+      = yield
+      = render 'layouts/footer' 
+

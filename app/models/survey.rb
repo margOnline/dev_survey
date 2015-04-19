@@ -40,7 +40,7 @@ class Survey < ActiveRecord::Base
   end
 
   def send_survey_completed
-    AdminMailer.notify_admin(self.id).deliver
+    AdminMailer.notify_admin(self.id).deliver_later
   end
 
 end

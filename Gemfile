@@ -1,13 +1,15 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.9'
+gem 'rails', '4.2'
 
 gem 'pg'
 gem 'bootstrap-sass', '3.2.0.0'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'envyable'
 gem 'exhibit'
+gem "fuubar"
+gem 'haml-rails'
 gem 'jbuilder', '~> 1.2'
 gem 'jquery-rails'
 gem 'rails-html-sanitizer'
@@ -29,14 +31,16 @@ group :development do
   gem 'binding_of_caller', '~> 0.7.2'
 end
 
-group :test do
+group :development, :test do
+  gem 'rspec-rails', '~> 3.0'
+  gem 'capybara'
+  gem 'capybara-screenshot'
   gem 'factory_girl_rails'
   gem 'flexmock', :require => 'flexmock/test_unit'
-  gem 'minitest'
-  gem 'minitest-reporters'
-  gem 'mini_backtrace'
-  gem 'guard-minitest'
-  gem 'shoulda'
+  gem 'poltergeist'
+  gem 'selenium-webdriver', '2.35.1'
+  gem 'should', require: false
+  gem 'shoulda-matchers', require: false
   gem 'pry'
 end
 

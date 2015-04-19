@@ -29,14 +29,21 @@ group :development do
   gem 'binding_of_caller', '~> 0.7.2'
 end
 
+group :development, :test do
+  gem 'rspec-rails', '~> 3.0'
+end
+
 group :test do
+  gem 'capybara', '2.1.0'
   gem 'factory_girl_rails'
   gem 'flexmock', :require => 'flexmock/test_unit'
   gem 'minitest'
   gem 'minitest-reporters'
   gem 'mini_backtrace'
   gem 'guard-minitest'
-  gem 'shoulda'
+  gem 'selenium-webdriver', '2.35.1'
+  gem 'should', require: false
+  gem 'shoulda-matchers', require: false
   gem 'pry'
 end
 

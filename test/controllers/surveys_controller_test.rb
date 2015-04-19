@@ -9,6 +9,7 @@ class SurveysControllerTest < ActionController::TestCase
     @survey = FactoryGirl.build(:survey)
     should 'render the form' do
       get :new, :token => @user.token
+      expect(assigns(:teams)).to eq([team])
       assert_assigns :survey, @survey
     end
 
@@ -21,12 +22,14 @@ class SurveysControllerTest < ActionController::TestCase
 
       should 'for developer' do
         get :new, :token => @user.token
+        expect(assigns(:teams)).to eq([team])
         assert_assigns :questions, [@dev_question, @general_question]
       end
 
       should 'for company' do
         company_user = FactoryGirl.create(:user, :company)
         get :new, :token => company_user.token
+        expect(assigns(:teams)).to eq([team])
         assert_assigns :questions, [@company_question, @general_question]
       end
     end

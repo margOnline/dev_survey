@@ -8,6 +8,7 @@ gem 'bootstrap-sass', '3.2.0.0'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'envyable'
 gem 'exhibit'
+gem "fuubar"
 gem 'haml-rails'
 gem 'jbuilder', '~> 1.2'
 gem 'jquery-rails'

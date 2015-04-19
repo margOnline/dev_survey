@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.9'
+gem 'rails', '4.2'
 
 gem 'pg'
 gem 'bootstrap-sass', '3.2.0.0'
@@ -31,17 +31,11 @@ end
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.0'
-  gem 'codeclimate-test-reporter', require: nil
-end
-
-group :test do
-  gem 'capybara', '2.1.0'
+  gem 'capybara'
+  gem 'capybara-screenshot'
   gem 'factory_girl_rails'
   gem 'flexmock', :require => 'flexmock/test_unit'
-  gem 'minitest'
-  gem 'minitest-reporters'
-  gem 'mini_backtrace'
-  gem 'guard-minitest'
+  gem 'poltergeist'
   gem 'selenium-webdriver', '2.35.1'
   gem 'should', require: false
   gem 'shoulda-matchers', require: false

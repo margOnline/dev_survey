@@ -2,8 +2,6 @@ if ENV["COV"]
   require 'simplecov'
   SimpleCov.start 'rails'
 end
-require "codeclimate-test-reporter"
-CodeClimate::TestReporter.start
 
 ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path("../../config/environment", __FILE__)
@@ -12,7 +10,6 @@ require 'shoulda/matchers'
 require 'capybara/poltergeist'
 require 'capybara-screenshot/rspec'
 require 'shoulda/matchers'
-require 'paperclip/matchers'
 require 'sidekiq/testing'
 
 Capybara.javascript_driver = :poltergeist
@@ -50,8 +47,6 @@ RSpec.configure do |config|
   end
 
   config.infer_spec_type_from_file_location!
-  config.include Devise::TestHelpers, type: :controller
-  config.include Paperclip::Shoulda::Matchers
 end
 
 class ActiveRecord::Base

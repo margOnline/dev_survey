@@ -13,6 +13,10 @@ DevSurvey::Application.routes.draw do
 
   namespace :admin do
     resources :surveys, only: [:index, :show, :destroy]
-    resources :questions, only: [:index, :show]
+    resources :questions, except: [:destroy] do
+      member do
+        post :archive
+      end
+    end
   end
 end

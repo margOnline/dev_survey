@@ -32,14 +32,15 @@ group :development do
 end
 
 group :development, :test do
+  gem 'minitest'
   gem 'rspec-rails', '~> 3.0'
   gem 'capybara'
   gem 'capybara-screenshot'
   gem 'factory_girl_rails'
   gem 'flexmock', :require => 'flexmock/test_unit'
+  
   gem 'poltergeist'
   gem 'selenium-webdriver', '2.35.1'
-  gem 'should', require: false
   gem 'shoulda-matchers', require: false
   gem 'pry'
 end

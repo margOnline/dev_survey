@@ -129,7 +129,7 @@ GEM
     jquery-rails (3.1.2)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
-    json (1.8.1)
+    json (1.8.3)
     launchy (2.4.2)
       addressable (~> 2.3)
     loofah (2.0.1)
@@ -139,7 +139,7 @@ GEM
     method_source (0.8.2)
     mime-types (2.4.3)
     mini_portile (0.6.0)
-    minitest (5.6.0)
+    minitest (5.7.0)
     multi_json (1.11.0)
     netrc (0.7.7)
     nokogiri (1.6.3.1)
@@ -234,8 +234,7 @@ GEM
       rubyzip (< 1.0.0)
       websocket (~> 1.0.4)
     sexp_processor (4.4.4)
-    should (1.0.1.0)
-    shoulda-matchers (2.7.0)
+    shoulda-matchers (2.8.0)
       activesupport (>= 3.0.0)
     sidekiq (3.2.4)
       celluloid (>= 0.15.2)
@@ -299,6 +298,7 @@ DEPENDENCIES
   heroku
   jbuilder (~> 1.2)
   jquery-rails
+  minitest
   pg
   poltergeist
   pry
@@ -309,7 +309,6 @@ DEPENDENCIES
   sass-rails (~> 4.0.2)
   sdoc
   selenium-webdriver (= 2.35.1)
-  should
   shoulda-matchers
   sidekiq
   spring (= 1.1.3)

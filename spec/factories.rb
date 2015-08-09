@@ -51,6 +51,7 @@ FactoryGirl.define do
     association :question_group
     title 'What colour is the sky?'
     field_type 'TextField'
+    position {rand(1..100)}
 
     trait :required do
       required true

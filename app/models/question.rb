@@ -9,21 +9,25 @@ class Question < ActiveRecord::Base
   ## Validations
   validates :question_group, :presence => true
   validates :title, :presence => true
-  validates :order, :uniqueness => true, numericality: { only_integer: true }
+  validates :position, :uniqueness => true, numericality: { only_integer: true }
   validates :field_type,
       :presence => true, :inclusion => { :in => QUESTION_TYPES }
 
   ## Class Methods ##
+  def self.by_position
+    order(position: :asc)
+  end
+
   def self.for_dev
-    joins(:question_group).merge(QuestionGroup.dev)
+    joins(:question_group).merge(QuestionGroup.dev).by_position
   end
 
   def self.for_company
-    joins(:question_group).merge(QuestionGroup.company)
+    joins(:question_group).merge(QuestionGroup.company).by_position
   end
 
   def self.general
-    joins(:question_group).merge(QuestionGroup.general)
+    joins(:question_group).merge(QuestionGroup.general).by_position
   end
 
   def self.required_for_dev

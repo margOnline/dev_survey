@@ -1,7 +1,8 @@
-%setion.price
-  %h3 = @question.title
+%section.price
+  %h3= @question.title
   - if @question.answers.any?
-    %ul
-      - question.answers_by_possible_answer.each do |pa,count|
-        %li "#{pa.text}: #{count}"
-        %dd
+    %table
+      - @question.answers_by_possible_answer.each do |pa,count|
+        %tr
+          %td= pa.text
+          %td= count

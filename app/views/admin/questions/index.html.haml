@@ -1,12 +1,15 @@
 %table
   %thead
     %tr
-      %td Id
+      %td Position
       %td Title
       %td Number of Answers
 
   - @questions.each do |question|
-  %tr
-    %td = link_to question.id, admin_question_path(question) %>
-    %td = question.title %>
-    %td = question.answers.count %> 
+    %tr
+      %td= question.position
+      %td= question.title 
+      %td= question.answers.count
+      %td= link_to 'View', admin_question_path(question)
+      %td= link_to 'Edit', edit_admin_question_path(question)
+      %td= link_to 'Delete', archive_admin_question_path(question)

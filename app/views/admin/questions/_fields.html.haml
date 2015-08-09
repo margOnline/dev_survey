@@ -1,0 +1,26 @@
+%fieldset
+  = fields_for @question do |f|
+    %ul
+      %li
+        = f.label :question_group
+        = question_groups_dropdown(f)
+      %li
+        = f.label :title
+        = f.text_field :title
+      
+      %li
+        = f.label :explanation
+        = f.text_field :explanation
+      
+      %li
+        = f.label :field_type
+        = f.select(:field_type, Question::QUESTION_TYPES.map { |type| [type.underscore.humanize, type.to_s]}, { prompt: 'Select one' })
+      
+      %li.inverse
+        = f.check_box :required
+        = f.label :required
+        
+      %li
+        = f.label :position
+        = f.text_field :position
+      

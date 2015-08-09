@@ -1,0 +1,11 @@
+- content_for :page_title, "Add new question" 
+
+%h2= yield :page_title 
+= object_title(@question_group) if @question_group 
+
+= error_messages_for @question 
+= form_for [:admin, @question], as: :question, html: { class: "standard" },
+  url: admin_questions_path do |f| 
+  = render :partial => 'fields', :locals => { :f => f } 
+  = f.button 'Save', class: 'btn btn-success'
+

@@ -9,6 +9,7 @@ class Question < ActiveRecord::Base
   ## Validations
   validates :question_group, :presence => true
   validates :title, :presence => true
+  validates :order, :uniqueness => true, numericality: { only_integer: true }
   validates :field_type,
       :presence => true, :inclusion => { :in => QUESTION_TYPES }
 

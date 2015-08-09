@@ -11,6 +11,8 @@ describe Question do
     it { should validate_presence_of :question_group }
     it { should validate_presence_of :title }
     it { should validate_presence_of :field_type }
+    it { should validate_uniqueness_of :order}
+    it {should validate_numericality_of :order}
     it { should allow_value('TextField', 'RadioSelect', 'Checkbox', 'Textarea').for(:field_type) }
     it { should_not allow_value('Ipsem').for(:field_type) }
   end

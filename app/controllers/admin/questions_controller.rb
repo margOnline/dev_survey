@@ -6,8 +6,7 @@ class Admin::QuestionsController <ApplicationController
     @questions = Question.paginate(:page => params[:page])
   end
 
-  def show
-    
+  def show    
   end
   
   def new
@@ -24,7 +23,6 @@ class Admin::QuestionsController <ApplicationController
   end
 
   def edit
-    
   end
   
   def update

@@ -23,8 +23,11 @@ describe Admin::QuestionsController do
 
       it "sucessfully: creates new question and redirects to show all questions" do
         expect { post :create, :token => @token,
-          question: { title: 'whatever', explanation: 'introduction', 
-            required: true, position: 1, question_group_id: @question_group.id, field_type: 'TextField' }
+          question: { 
+            title: 'whatever', explanation: 'introduction', 
+            required: true, position: 1, question_group_id: 
+            @question_group.id, field_type: 'TextField' 
+          }
         }.to change(Question, :count).by(1)
         expect(response).to redirect_to admin_questions_path
       end
@@ -41,15 +44,24 @@ describe Admin::QuestionsController do
   describe "without token" do
     before do
       @object = FactoryGirl.create(:question)
+      @question_group = FactoryGirl.create(:question_group)
     end
 
     it "index: redirect" do
       get :index
       expect(response).to redirect_to root_path
     end
-
     it "show: redirect" do
       get :show, id: @object.id
+      expect(response).to redirect_to root_path
+    end
+    it "create: redirect" do
+      post :create, :token => @token,
+        question: { 
+          title: 'whatever', explanation: 'introduction', 
+          required: true, position: 1, question_group_id: 
+          @question_group.id, field_type: 'TextField' 
+        }
       expect(response).to redirect_to root_path
     end
   end
@@ -57,15 +69,24 @@ describe Admin::QuestionsController do
   describe "with incorrect token" do
     before do
       @object = FactoryGirl.create(:question)
+      @question_group = FactoryGirl.create(:question_group)
     end
 
     it "index: redirect" do
       get :index, :token => 'admin'
       expect(response).to redirect_to root_path
     end
-
     it "show: redirect" do
       get :show, id: @object.id, :token => 'admin'
+      expect(response).to redirect_to root_path
+    end
+    it "create: redirect" do
+      post :create, :token => @token,
+        question: { 
+          title: 'whatever', explanation: 'introduction', 
+          required: true, position: 1, question_group_id: 
+          @question_group.id, field_type: 'TextField' 
+        }
       expect(response).to redirect_to root_path
     end
 

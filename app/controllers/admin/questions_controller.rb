@@ -1,5 +1,5 @@
 class Admin::QuestionsController <ApplicationController
-  #before_action :validate_rights
+  before_action :validate_rights
   before_action :setup_question, only: [:show, :edit, :update, :archive]
 
   def index
